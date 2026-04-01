@@ -49,8 +49,8 @@ function GaugeContent({ goal, total }) {
         <svg viewBox="0 0 240 170" className="h-auto w-full max-h-[180px] overflow-visible" aria-hidden="true">
           <defs>
             <linearGradient id="gauge-red" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="oklch(0.76 0.15 52)" />
-              <stop offset="100%" stopColor="oklch(0.68 0.17 34)" />
+              <stop offset="0%" stopColor="oklch(0.72 0.15 46)" />
+              <stop offset="100%" stopColor="oklch(0.64 0.17 31)" />
             </linearGradient>
           </defs>
           <path

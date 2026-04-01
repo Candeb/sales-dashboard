@@ -45,7 +45,7 @@ export function ByQuarterCard({ quarters = MOCK, yMax = Y_MAX } = {}) {
                     style={{
                       height: `${h}%`,
                       minHeight: '6px',
-                      backgroundColor: 'oklch(0.71 0.17 34.5)',
+                      backgroundColor: 'oklch(0.66 0.17 31)',
                     }}
                     title={`${q.label}: ${q.amount}`}
                   />

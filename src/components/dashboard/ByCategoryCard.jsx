@@ -79,7 +79,7 @@ export function ByCategoryCard() {
                         width: `${w}%`,
                         minWidth: w > 28 ? undefined : '4.25rem',
                         backgroundImage:
-                          'linear-gradient(to right, oklch(0.76 0.15 52), oklch(0.68 0.17 34))',
+                          'linear-gradient(to right, oklch(0.72 0.15 46), oklch(0.64 0.17 31))',
                       }}
                     >
                       <span className="absolute end-1.5 top-1/2 max-w-[calc(100%-0.5rem)] -translate-y-1/2 truncate text-end text-xs font-semibold text-white tabular-nums sm:end-2 sm:text-xs">

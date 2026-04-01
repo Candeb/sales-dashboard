@@ -83,8 +83,8 @@ export function ByWeekCard({ labels = MOCK.labels, seriesA = MOCK.seriesA, serie
                 strokeWidth={1}
               />
             ))}
-            <path d={pathB} fill="none" stroke="oklch(0.63 0.15 33)" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-            <path d={pathA} fill="none" stroke="oklch(0.72 0.14 47)" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+            <path d={pathB} fill="none" stroke="oklch(0.58 0.14 30)" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+            <path d={pathA} fill="none" stroke="oklch(0.67 0.15 40)" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
           </svg>
           <div className="mt-1 flex justify-between gap-0.5 px-1 text-[8px] text-neutral-500 sm:text-[9px]">
             {labels.map((lab) => (
