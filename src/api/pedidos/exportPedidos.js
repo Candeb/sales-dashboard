@@ -7,6 +7,8 @@ import { sigFetch } from '../client.js';
  * @property {'pendientes' | 'todos' | 'anulados'} [estado]
  * @property {'S' | 'N'} [items] - Por defecto N
  * @property {string} [fecha] - Para anulados de un día distinto al actual
+ * @property {string} [dde] - Fecha desde (YYYY-MM-DD)
+ * @property {string} [hta] - Fecha hasta (YYYY-MM-DD)
  */
 
 /**
@@ -20,6 +22,8 @@ export function buildExportPedidosQuery(params = {}) {
   if (params.estado) q.set('estado', params.estado);
   if (params.items) q.set('items', params.items);
   if (params.fecha) q.set('fecha', params.fecha);
+  if (params.dde) q.set('dde', params.dde);
+  if (params.hta) q.set('hta', params.hta);
   const s = q.toString();
   return s ? `?${s}` : '';
 }

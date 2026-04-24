@@ -56,7 +56,7 @@ export function ByWeekCard({ labels = MOCK.labels, seriesA = MOCK.seriesA, serie
   return (
     <DashboardPanel title="Por semana">
       <div className="flex min-h-0 flex-1 gap-1.5 sm:gap-2">
-        <div className="flex w-7 shrink-0 flex-col justify-between py-1 pb-8 text-[9px] tabular-nums text-neutral-400 sm:w-8 sm:text-[10px]">
+        <div className="flex w-6 shrink-0 flex-col justify-between py-1 pb-6 text-[8px] tabular-nums text-neutral-400 sm:w-7 sm:text-[9px]">
           {[...Y_TICKS].reverse().map((t) => (
             <span key={t} className="-translate-y-1/2 leading-none first:translate-y-0 last:translate-y-0">
               {formatAxis(t)}
@@ -66,7 +66,7 @@ export function ByWeekCard({ labels = MOCK.labels, seriesA = MOCK.seriesA, serie
         <div className="relative min-h-0 min-w-0 flex-1">
           <svg
             viewBox={`0 0 ${vbW} ${vbH}`}
-            className="h-full w-full min-h-[120px] max-h-[min(28vh,220px)]"
+            className="h-full w-full min-h-[95px] max-h-[min(19vh,125px)] sm:min-h-[110px] sm:max-h-[min(22vh,160px)]"
             preserveAspectRatio="xMidYMid meet"
             role="img"
             aria-label="Tendencia de ventas por semana (dos series)"
@@ -86,9 +86,9 @@ export function ByWeekCard({ labels = MOCK.labels, seriesA = MOCK.seriesA, serie
             <path d={pathB} fill="none" stroke="oklch(0.58 0.14 30)" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
             <path d={pathA} fill="none" stroke="oklch(0.67 0.15 40)" strokeWidth={2.25} strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
           </svg>
-          <div className="mt-1 flex justify-between gap-0.5 px-1 text-[8px] text-neutral-500 sm:text-[9px]">
+          <div className="mt-1 flex justify-between gap-0.5 px-1 text-[7px] text-neutral-500 sm:text-[8px]">
             {labels.map((lab) => (
-              <span key={lab} className="max-w-[4.5rem] text-center leading-tight sm:max-w-none">
+              <span key={lab} className="max-w-[3.8rem] text-center leading-tight sm:max-w-[4.5rem]">
                 {lab}
               </span>
             ))}

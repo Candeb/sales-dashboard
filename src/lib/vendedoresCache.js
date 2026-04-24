@@ -2,7 +2,7 @@
  * Caché local de vendedores para evitar nuevas consultas al recargar.
  */
 
-const STORAGE_KEY = 'sig-dashboard:vendedores:v2';
+const STORAGE_KEY = 'sig-dashboard:vendedores:v3';
 
 /**
  * @returns {{ items: { id: string, name: string, initials: string, color: string }[], updatedAt: number } | null}

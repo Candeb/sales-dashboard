@@ -3,7 +3,7 @@ import { useExportPedidosTotal } from '../../hooks/useExportPedidosTotal.js';
 import { DashboardPanel } from './DashboardPanel.jsx';
 import { IoMdRefresh } from 'react-icons/io';
 
-const DEFAULT_GOAL = 500_000_000;
+const DEFAULT_GOAL = 800_000_000;
 
 function formatARS(n) {
   return new Intl.NumberFormat('es-AR', {
@@ -45,8 +45,12 @@ function GaugeContent({ goal, total }) {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col items-center justify-center">
-      <div className="relative w-full max-w-[300px] shrink-0">
-        <svg viewBox="0 0 240 170" className="h-auto w-full max-h-[180px] overflow-visible" aria-hidden="true">
+      <div className="relative w-full max-w-[250px] shrink-0 lg:max-w-[300px]">
+        <svg
+          viewBox="0 0 240 170"
+          className="h-auto w-full max-h-[145px] overflow-visible lg:max-h-[180px]"
+          aria-hidden="true"
+        >
           <defs>
             <linearGradient id="gauge-red" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="oklch(0.72 0.15 46)" />
@@ -91,8 +95,8 @@ function GaugeContent({ goal, total }) {
             {formatARSShort(goal)}
           </text>
         </svg>
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center pt-10 text-center">
-          <p className="text-[1.85rem] font-bold tabular-nums tracking-tight text-neutral-900 sm:text-[1.2rem]">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-1 pt-8 text-center sm:pt-9 lg:pt-10">
+          <p className="px-0.5 text-center text-xs font-bold leading-tight tabular-nums tracking-tight text-neutral-900 sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl">
             {formatARS(total)}
           </p>
         </div>
@@ -147,8 +151,8 @@ export function TotalSalesCard({ goal: goalProp } = {}) {
 
   return (
     <DashboardPanel
-      title="Ventas totales"
-      titleClassName="text-xl font-bold sm:text-2xl"
+      title="Ventas totales hoy"
+      titleClassName="text-lg font-bold sm:text-xl lg:text-2xl"
       headerRight={refreshHeaderButton}
     >
       {showFatalError ? (

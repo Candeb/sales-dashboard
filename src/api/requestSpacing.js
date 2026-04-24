@@ -4,29 +4,38 @@
  */
 const LS_LAST_COMPLETED = 'sig-api:last-request-completed-at';
 
+function buildStorageKey(scope = 'global') {
+  return `${LS_LAST_COMPLETED}:${scope}`;
+}
+
 export function getMinRequestIntervalMs() {
   const raw = import.meta.env.VITE_SIG_API_MIN_INTERVAL_MS;
   const n = raw != null && raw !== '' ? Number(raw) : NaN;
   return Number.isFinite(n) && n > 0 ? n : 60_000;
 }
 
+function resolveMinIntervalMs(minIntervalMs) {
+  if (Number.isFinite(minIntervalMs) && minIntervalMs > 0) return minIntervalMs;
+  return getMinRequestIntervalMs();
+}
+
 /** Milisegundos que faltan para poder iniciar otra petición (0 si ya se puede). */
-export function getMsUntilNextRequestAllowed() {
+export function getMsUntilNextRequestAllowed(scope = 'global', minIntervalMs) {
   let last = 0;
   try {
-    last = Number(localStorage.getItem(LS_LAST_COMPLETED));
+    last = Number(localStorage.getItem(buildStorageKey(scope)));
   } catch {
     return 0;
   }
   if (!Number.isFinite(last) || last <= 0) return 0;
   const elapsed = Date.now() - last;
-  return Math.max(0, getMinRequestIntervalMs() - elapsed);
+  return Math.max(0, resolveMinIntervalMs(minIntervalMs) - elapsed);
 }
 
 /** Llamar al finalizar una petición (éxito o error): el servidor ya fue golpeado. */
-export function recordApiRequestCompleted() {
+export function recordApiRequestCompleted(scope = 'global') {
   try {
-    localStorage.setItem(LS_LAST_COMPLETED, String(Date.now()));
+    localStorage.setItem(buildStorageKey(scope), String(Date.now()));
   } catch {
     /* modo privado / sin espacio */
   }

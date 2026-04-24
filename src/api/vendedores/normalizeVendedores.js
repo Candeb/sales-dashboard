@@ -3,6 +3,7 @@
  * @property {string} [id]
  * @property {string} [nombre]
  * @property {string} [desactivado] - "S" o "N"
+ * @property {string} [empresas] - Lista separada por coma (ej: "0002,2000")
  */
 
 /**
@@ -25,6 +26,14 @@ export function normalizeVendedoresPayload(raw) {
   }
 
   return [];
+}
+
+function hasEmpresa(rowsEmpresas, targetEmpresa) {
+  const empresas = String(rowsEmpresas ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return empresas.includes(targetEmpresa);
 }
 
 function initialsFromName(name) {
@@ -52,7 +61,9 @@ const PALETTE = [
  * @returns {{ id: string, name: string, initials: string, color: string }[]}
  */
 export function mapVendedoresToUi(rows, limit = Number.POSITIVE_INFINITY) {
+  const TARGET_EMPRESA = '0002';
   const normalized = rows
+    .filter((v) => hasEmpresa(v?.empresas, TARGET_EMPRESA))
     .filter((v) => String(v?.desactivado ?? '').toUpperCase() !== 'S')
     .filter((v) => typeof v?.nombre === 'string' && v.nombre.trim() !== '')
     .sort((a, b) => String(a?.id ?? '').localeCompare(String(b?.id ?? ''), 'es'))

@@ -8,6 +8,8 @@ import {
 } from '../api/requestSpacing.js';
 import { readPedidosTotalCache, writePedidosTotalCache } from '../lib/pedidosTotalCache.js';
 
+const REQUEST_SCOPE = 'export-pedidos-total';
+
 function getTodayYmdLocal() {
   const now = new Date();
   const y = now.getFullYear();
@@ -44,7 +46,7 @@ export function useExportPedidosTotal() {
   }, []);
 
   void tick;
-  const secondsUntilAllowed = Math.ceil(getMsUntilNextRequestAllowed() / 1000);
+  const secondsUntilAllowed = Math.ceil(getMsUntilNextRequestAllowed(REQUEST_SCOPE) / 1000);
 
   const fetchAndPersist = useCallback(async (pk) => {
     const date = pk.split(':')[1];
@@ -88,7 +90,7 @@ export function useExportPedidosTotal() {
           setUpdatedAt(null);
         }
       } finally {
-        recordApiRequestCompleted();
+        recordApiRequestCompleted(REQUEST_SCOPE);
         if (!cancelled) setLoading(false);
       }
     })();
@@ -99,7 +101,7 @@ export function useExportPedidosTotal() {
   }, [paramsKey, fetchAndPersist]);
 
   const refreshFromApi = useCallback(async () => {
-    const wait = getMsUntilNextRequestAllowed();
+    const wait = getMsUntilNextRequestAllowed(REQUEST_SCOPE);
     if (wait > 0) {
       return { ok: false, reason: 'cooldown', waitMs: wait };
     }
@@ -114,7 +116,7 @@ export function useExportPedidosTotal() {
       setError(errorMessage(e));
       return { ok: false, reason: 'error' };
     } finally {
-      recordApiRequestCompleted();
+      recordApiRequestCompleted(REQUEST_SCOPE);
       setLoading(false);
     }
   }, [paramsKey, fetchAndPersist]);

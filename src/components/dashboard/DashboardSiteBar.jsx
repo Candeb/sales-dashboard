@@ -4,7 +4,7 @@
 export function DashboardSiteBar({ className = '' }) {
   return (
     <div
-      className={`shrink-0 rounded-lg border border-red-200/80 bg-white px-4 py-3 shadow-sm sm:px-5 sm:py-4 ${className}`.trim()}
+      className={`shrink-0 rounded-lg border border-neutral-200 bg-white px-4 py-3 shadow-sm sm:px-5 sm:py-4 ${className}`.trim()}
       role="banner"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
